@@ -1,0 +1,54 @@
+.dashboard-contentPage{
+    background-image: url('../../../img/fondos/fondoindex.jpg');
+    background-size: 100%;
+}
+.plantBoton{
+    width: 5vh;
+    background-color: #2e0505;
+}
+.plantBoton:hover{
+    background-color: rgba(218, 218, 218, 0.829);
+}
+.plantBoton i:hover{
+    color: rgba(244, 150, 28, 0.829);
+}
+.plantBoton i{
+    color: white;
+}
+.perfil_info,.actualizar{
+    display: inline-block;
+    width: 60vh;
+    height: 80vh;
+    margin: 2% 7%;
+    padding: 5%;
+}
+.label_actualizar{
+    color: #2e0505;
+    margin: 2% 0;
+    font-size: larger;    
+}
+.information{
+    width: 90%;
+    border: 0;
+    background-color: transparent;
+    border-radius: 1vh;
+    border-bottom: 2px solid #2e0505;
+}
+.information:focus{
+    background-color:rgba(218, 218, 218, 0.829);
+    border-bottom: 2px solid #2e0505;
+}
+.enviar{
+    color: #2e0505;
+    width: 50%;
+    margin: 5% 10%;
+    padding: 1vh;
+    text-align: center;
+    background-color: transparent;
+    border: 2px solid #2e0505;
+    border-radius: 1vh;
+}
+.enviar:hover{
+    background-color:rgba(218, 218, 218, 0.829);
+    box-shadow: 0 2px 4px rgba(172, 170, 170, 0.2);
+}

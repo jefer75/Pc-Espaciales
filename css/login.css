@@ -1,0 +1,12 @@
+body{
+    padding: 5% 15%;
+    
+}
+
+.contPrincipal{
+    background-color: rgb(247, 247, 201);
+    border: 2px solid red;
+}
+.titulo{
+    text-align: center;
+}
