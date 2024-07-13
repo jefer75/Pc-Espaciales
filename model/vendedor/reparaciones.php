@@ -81,7 +81,7 @@
                                                                 INNER JOIN usuarios ON usuarios.documento = solicitudes.tecnico
                                                                 INNER JOIN tipo_solicitud ON tipo_solicitud.id_tipo_soli = solicitudes.id_tipo_soli
                                                                 INNER JOIN estados ON estados.id_estado = solicitudes.id_estado
-                                                                Where solicitudes.id_estado=6");
+                                                                Where solicitudes.id_estado=6 order by solicitudes.id_solicitud DESC");
                                 $con_productos->execute();
                                 $productos = $con_productos->fetchAll(PDO::FETCH_ASSOC);
                                 foreach ($productos as $fila) {
@@ -93,7 +93,7 @@
                                         <td><?php echo $fila['tipo_solicitud'] ?></td>
                                         <td><?php echo $fila['descripcion'] ?></td>
                                         <td><?php echo $fila['nombre'] ?></td>
-                                        <td><?php echo $fila['valor_total'] ?></td>
+                                        <td><?php echo number_format($fila['valor_total']) ?></td>
                                         <td><?php echo $fila['comentarios'] ?></td>
                                         <td><?php echo $fila['estado'] ?></td>
                                     </tr>

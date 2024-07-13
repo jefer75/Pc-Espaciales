@@ -3,7 +3,20 @@ require_once("../../conexion/conexion.php");
 $db = new Database();
 $con = $db -> conectar();
 
-function Enviar_contraseña($correo, $nombre, $contrasena) {
+function manejarPage($page) {
+    switch ($page) {
+        case 1:
+            echo '<script>window.location="login.php"</script>';
+            break;
+        case 2:
+            echo '<script>window.location="../vendedor/clientes.php"</script>';
+            break;
+        case 3:
+            echo '<script>window.location="../vendedor/tecnico.php"</script>';
+            break;
+    }
+}
+function Enviar_contraseña($correo, $nombre, $contrasena, $page) {
     $destino = "$correo";
             $titulo = "Usuario registrado en PC Espaciales";
             $msj = "Hola $nombre,
@@ -16,23 +29,10 @@ function Enviar_contraseña($correo, $nombre, $contrasena) {
 
             if (mail($destino, $titulo, $msj, $tucorreo)) {
                 echo '<script> alert ("Notificacion enviada al correo digitado");</script>';
-                echo '<script>window.location="codiS.php"</script>';
+                manejarPage($page);
 }
 }
 
-function manejarPage($page) {
-    switch ($page) {
-        case 1:
-            echo '<script>window.location="../inicio/login.php"</script>';
-            break;
-        case 2:
-            echo '<script>window.location="../vendedor/clientes.php"</script>';
-            break;
-        case 3:
-            echo '<script>window.location="../vendedor/tecnico.php"</script>';
-            break;
-    }
-}
 
 if (isset($_POST['registrar']))
    {
@@ -51,13 +51,11 @@ if (isset($_POST['registrar']))
     }else if ($page == 2){
         $digitos = "sakur02ue859y2u389rhdewirh102385y1285013289";
         $longitud = 10;
-        $contrasena=12345678910;
-        //$contrasena = substr(str_shuffle($digitos), 0, $longitud);
+        $contrasena = substr(str_shuffle($digitos), 0, $longitud);
     }else if($page== 3) {
         $digitos = "sakur02ue859y2u389rhdewirh102385y1285013289";
         $longitud = 10;
-        $contrasena=12345678910;
-        //$contrasena = substr(str_shuffle($digitos), 0, $longitud);
+        $contrasena = substr(str_shuffle($digitos), 0, $longitud);
     }
 
      $sql= $con -> prepare ("SELECT * FROM usuarios WHERE documento='$cedula' or correo = '$correo'");
@@ -85,11 +83,10 @@ if (isset($_POST['registrar']))
             $pass_cifrado = password_hash($contrasena, PASSWORD_DEFAULT, array("cost" => 12));
 
             // Inserción de datos en la base de datos
-            $insertSQL = $con->prepare("INSERT INTO usuarios (documento, nombre, apellido, telefono, correo, contrasena, id_estado, id_tipo_usuario) 
-                                       VALUES ($cedula, '$nombre', '$apellido', $telefono, '$correo', '$pass_cifrado', $estado, $tipo_user)");
+            $insertSQL = $con->prepare("INSERT INTO usuarios (documento, nombre, apellido, telefono, correo, contrasena, id_estado, id_tipo_usuario) VALUES ($cedula, '$nombre', '$apellido', $telefono, '$correo', '$pass_cifrado', $estado, $tipo_user)");
             $insertSQL->execute();
 
-            Enviar_contraseña($correo, $nombre, $contrasena);
+            Enviar_contraseña($correo, $nombre, $contrasena, $page);
             manejarPage($page);
         }
     }

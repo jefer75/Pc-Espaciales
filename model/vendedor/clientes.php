@@ -44,7 +44,7 @@
                                     <?php
                                     $con_productos = $con->prepare("SELECT usuarios.*, estados.estado FROM usuarios
                                                                     INNER JOIN estados ON estados.id_estado = usuarios.id_estado
-                                                                    Where usuarios.id_tipo_usuario=3");
+                                                                    Where usuarios.id_tipo_usuario=2");
                                     $con_productos->execute();
                                     $productos = $con_productos->fetchAll(PDO::FETCH_ASSOC);
                                     foreach ($productos as $fila) {
@@ -57,7 +57,9 @@
                                             <td><?php echo $fila['telefono'] ?></td>                                            
                                             <td><?php echo $fila['correo'] ?></td>
 											<td><?php echo $fila['estado'] ?></td>
-											<td><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+											<td><a href="#" class="boton" onclick="window.open
+											('../funciones/actualizar_user.php?id=<?php echo $fila['documento'] ?>','','width= 400,height=300, toolbar=NO');void(null);">Actualizar</a>
+											</td>
 								    	</tr>
                                     <?php
                                     }

@@ -30,7 +30,7 @@
 								<table class="table table-hover text-center">
 									<thead>
 										<tr>
-											<th class="text-center">Codgio</th>
+											<th class="text-center">Codigo</th>
 											<th class="text-center">Fecha de Venta</th>
 											<th class="text-center">Cliente</th>
                                             <th class="text-center">Valor total</th>                                            
@@ -51,7 +51,7 @@
 										<td><?php echo $fila['id_venta'] ?></td>
 										<td><?php echo $fila['fecha'] ?></td>
 										<td><?php echo $fila['nombre'] ?></td>
-										<td><?php echo $fila['valor_total'] ?></td>                                            
+										<td><?php echo number_format($fila['valor_total']) ?></td>                                            
 										<td><a href="#" class="boton" onclick="window.open
 										('../detalles/detalle_ventas.php?id=<?php echo $fila['id_venta'] ?>','','width= 600,height=400, toolbar=NO');void(null);">Detalles</a>
 										</td>	

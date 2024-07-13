@@ -57,7 +57,9 @@
                                             <td><?php echo $fila['telefono'] ?></td>                                            
                                             <td><?php echo $fila['correo'] ?></td>
 											<td><?php echo $fila['estado'] ?></td>
-											<td><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+											<td><a href="#" class="boton" onclick="window.open
+											('../funciones/actualizar_user.php?id=<?php echo $fila['documento'] ?>','','width= 400,height=300, toolbar=NO');void(null);">Actualizar</a>
+											</td>
 								    	</tr>
                                     <?php
                                     }
