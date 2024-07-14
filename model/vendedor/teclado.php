@@ -35,13 +35,17 @@
 											  <label class="control-label">Nombre</label>
 											  <input class="form-control" type="text" name="nombre_p">
 											</div>
+											<div class="form-group label-floating">
+											  <label for="descripcion" class="control-label">Descripcion</label>
+											  <textarea class="form-control" type="text" name="descripcion"></textarea>
+											</div>
 									    	<div class="form-group label-floating">
 											  <label class="control-label">Cantidad</label>
 											  <input class="form-control" type="number" name="cantidad">
 											</div>
 											<div class="form-group label-floating">
-											  <label class="control-label">Precio</label>
-											  <input class="form-control" type="text" name="precio">
+											  <label class="control-label">Precio(solo números)</label>
+											  <input class="form-control" type="number" name="precio">
 											</div>
                                             <div class="form-group label-floating">
 											  <select name="tipo_producto" class="form-control">

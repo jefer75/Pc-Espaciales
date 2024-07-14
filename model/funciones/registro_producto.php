@@ -29,6 +29,7 @@ function manejarPage($page) {
 if (!empty($_POST['registrar'])){
 
     $nombre_p = $_POST['nombre_p'];
+    $descripcion = $_POST['descripcion'];
     $cantidad = $_POST['cantidad'];
     $precio = $_POST['precio'];
     $tipo = $_POST['tipo_producto'];
@@ -39,7 +40,7 @@ if (!empty($_POST['registrar'])){
     $formato=strtolower(pathinfo($nombre,PATHINFO_EXTENSION));
     $peso=$_FILES['imagen']['size'];
     
-    if ($nombre_p=="" || $cantidad=="" || $precio=="" || $tipo=="" || $imagen=="") {
+    if ($nombre_p=="" || $descripcion=="" || $cantidad=="" || $precio=="" || $tipo=="" || $imagen=="") {
         
         echo '<script>alert ("Por favor llene todos los campos");</script>';
         manejarPage($page);
@@ -50,7 +51,7 @@ if (!empty($_POST['registrar'])){
 
         if ($formato=="jpg" || $formato=="jpeg" || $formato=="png") {
         
-            $insertSQL = $con->prepare("INSERT INTO productos(nombre_p, cantidad, valor, imagen, id_estado, id_tipo_pro) VALUES('$nombre_p', $cantidad, $precio, '', 1, $tipo)");
+            $insertSQL = $con->prepare("INSERT INTO productos(nombre_p, descripcion, cantidad, valor, imagen, id_estado, id_tipo_pro) VALUES('$nombre_p', '$descripcion', $cantidad, $precio, '', 1, $tipo)");
             $insertSQL -> execute();
     
             $sql= $con -> prepare ("SELECT * FROM productos WHERE imagen=''");
