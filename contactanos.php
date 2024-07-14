@@ -12,7 +12,7 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>Tropiko</title>
+  <title>Contactanos</title>
 
   <!-- slider stylesheet -->
   <link rel="stylesheet" type="text/css"

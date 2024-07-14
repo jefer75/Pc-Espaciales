@@ -25,8 +25,13 @@
 				<div class="full-box tile-icon text-center">
 					<i class="zmdi zmdi-account"></i>
 				</div>
+				<?php
+				$con_nombre = $con->prepare("SELECT COUNT(*) as total FROM usuarios WHERE id_tipo_usuario = 3");
+				$con_nombre->execute();
+				$totales = $con_nombre->fetch();
+				?>
 				<div class="full-box tile-number text-titles">
-					<p class="full-box">7</p>
+					<p class="full-box"><?php echo $totales['total'] ?></p>
 					<small>Contratados</small>
 				</div>
 			</article>
@@ -37,8 +42,13 @@
 				<div class="full-box tile-icon text-center">
 					<i class="zmdi zmdi-male-alt"></i>
 				</div>
+				<?php
+				$con_nombre = $con->prepare("SELECT COUNT(*) as total FROM usuarios WHERE id_tipo_usuario = 2");
+				$con_nombre->execute();
+				$totales = $con_nombre->fetch();
+				?>
 				<div class="full-box tile-number text-titles">
-					<p class="full-box">10</p>
+					<p class="full-box"><?php echo $totales['total'] ?></p>
 					<small>Resgistrados</small>
 				</div>
 			</article>
@@ -49,8 +59,13 @@
 				<div class="full-box tile-icon text-center">
 					<i class="zmdi zmdi-money-box zmdi-hc-fw"></i>
 				</div>
+				<?php
+				$con_nombre = $con->prepare("SELECT COUNT(*) as total FROM ventas");
+				$con_nombre->execute();
+				$totales = $con_nombre->fetch();
+				?>
 				<div class="full-box tile-number text-titles">
-					<p class="full-box">1</p>
+					<p class="full-box"><?php echo $totales['total'] ?></p>
 					<small>Realizadas</small>
 				</div>
 			</article>
@@ -61,8 +76,13 @@
 				<div class="full-box tile-icon text-center">
 					<i class="zmdi zmdi-male-female"></i>
 				</div>
+				<?php
+				$con_nombre = $con->prepare("SELECT COUNT(*) as total FROM solicitudes WHERE id_estado = 6");
+				$con_nombre->execute();
+				$totales = $con_nombre->fetch();
+				?>
 				<div class="full-box tile-number text-titles">
-					<p class="full-box">70</p>
+					<p class="full-box"><?php echo $totales['total'] ?></p>
 					<small>Realizadas</small>
 				</div>
 			</article>

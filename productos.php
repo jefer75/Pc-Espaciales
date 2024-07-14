@@ -18,7 +18,7 @@ $con = $db->conectar();
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>Productos</title>
+  <title>Laptop</title>
 
   <!-- slider stylesheet -->
   <link rel="stylesheet" type="text/css"

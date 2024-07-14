@@ -18,7 +18,7 @@ $con = $db->conectar();
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>Productos</title>
+  <title>Arma tu PC</title>
 
   <!-- slider stylesheet -->
   <link rel="stylesheet" type="text/css"
@@ -46,9 +46,9 @@ $con = $db->conectar();
 
   <section class="fruit_section layout_padding-top">
     <div class="container">
-      <h2 class="custom_heading">Laptop</h2>
+      <h2 class="custom_heading">Arma tu PC</h2>
       <p class="custom_heading-text">
-        Estos son algunos de nuestros productos más vendidos.
+        Esta es la mejor opcion si quieres sacar el mejor provecho a tu dinero, lo mejor de todo es que puedes conformarlo como tu desees, sin impedimentos.
       </p>
       <?php
         $con_productos = $con->prepare("SELECT * FROM productos Where id_tipo_pro!=1 AND id_estado=1");
