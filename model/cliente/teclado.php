@@ -58,7 +58,7 @@
                                             <td><img src="../../<?php echo $fila['imagen'] ?>" alt=""></td>
 											<td><?php echo $fila['estado'] ?></td>
 											<td><a href="#" class="boton" onclick="window.open
-											('../funciones/actualizar_producto.php?id=<?php echo $fila['id_producto'] ?>','','width= 700,height=500, toolbar=NO');void(null);">Actualizar</a>
+											('../detalles/ver_productos.php?id=<?php echo $fila['id_producto'] ?>','','width= 700,height=500, toolbar=NO');void(null);">Ver articulo</a>
 											</td>
 								    	</tr>
                                     <?php

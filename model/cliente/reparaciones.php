@@ -68,7 +68,7 @@
                                         <th class="text-center">Fecha de solicitud</th>
                                         <th class="text-center">Tipo de solicitud</th>
                                         <th class="text-center">Descripcion</th>
-                                        <th class="text-center">Cliente</th>
+                                        <th class="text-center">Tecnico</th>
                                         <th class="text-center">Valor Total</th>
                                         <th class="text-center">Obeservacion</th> 
                                         <th class="text-center">Estado</th>
@@ -76,7 +76,7 @@
                                 </thead>
                                 <tbody>
                                 <?php
-                                $con_productos = $con->prepare("SELECT solicitudes.*, estados.estado, tipo_solicitud.tipo_solicitud, usuarios.nombre                  
+                                $con_productos = $con->prepare("SELECT solicitudes.*, estados.estado, tipo_solicitud.tipo_solicitud, usuarios.nombre, usuarios.apellido
                                                                 FROM solicitudes
                                                                 INNER JOIN usuarios ON usuarios.documento = solicitudes.tecnico
                                                                 INNER JOIN tipo_solicitud ON tipo_solicitud.id_tipo_soli = solicitudes.id_tipo_soli
@@ -92,7 +92,7 @@
                                         <td><?php echo $fila['fecha_soli'] ?></td>
                                         <td><?php echo $fila['tipo_solicitud'] ?></td>
                                         <td><?php echo $fila['descripcion'] ?></td>
-                                        <td><?php echo $fila['nombre'] ?></td>
+                                        <td><?php echo $fila['nombre']." ".$fila['apellido'] ?></td>
                                         <td><?php echo number_format($fila['valor_total']) ?></td>
                                         <td><?php echo $fila['comentarios'] ?></td>
                                         <td><?php echo $fila['estado'] ?></td>
@@ -112,7 +112,6 @@
                                         <th class="text-center">Codigo</th>
                                         <th class="text-center">Fecha de solicitud</th>
                                         <th class="text-center">Tipo de solicitud</th>
-                                        <th class="text-center">Cliente</th>
                                         <th class="text-center">Estado</th>
                                     </tr>
                                 </thead>
@@ -132,23 +131,9 @@
                                     <td><?php echo $fila['id_solicitud'] ?></td>
                                     <td><?php echo $fila['fecha_soli'] ?></td>
                                     <td><?php echo $fila['tipo_solicitud'] ?></td>
-                                    <td><?php echo $fila['nombre'] ?></td>
+
                                     <td><?php echo $fila['estado'] ?></td>
-                                    <td>
-                                    <form method="POST">
-                                        <button type="button" class="btn btn-primary abrirModal" data-id="<?php echo $fila['id_solicitud']; ?>">
-                                        <?php 
-                                            if($fila['id_estado']==4)
-                                            {
-                                                echo "Asignar";
-                                            }
-                                            else {
-                                                echo "Reasignar";
-                                            }
-                                         ?>    
-                                        </button>
-                                    </form>
-                                    </td>
+
                                 </tr>
                                 <?php
                                 }

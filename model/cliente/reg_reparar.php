@@ -40,24 +40,13 @@
                                                     }
                                                 ?>
                                               </select>
-											</div>
-                                            <div class="form-group label-floating">
-                                                <select class="form-control" name="cliente" id="clienteSelect" required>
-                                                    <option value="">Seleccione el cliente</option>
-                                                    <?php
-                                                    $control = $con->prepare("SELECT * FROM usuarios WHERE id_tipo_usuario=2");
-                                                    $control->execute();
-                                                    while ($fila = $control->fetch(PDO::FETCH_ASSOC)) {
-                                                        echo "<option value='" . $fila['documento'] . "'>" . $fila['nombre'] . "</option>";
-                                                    }
-                                                    ?>
-                                                </select>
-											</div>											
+											</div>										
 									    	<div class="form-group label-floating">
 											  <label class="control-label">Descripcion</label>
 											  <input class="form-control" type="text" name="descripcion">
 											</div>
 											<div class="text-center">
+                                                <input type="hidden" name="cliente" value="<?php echo $cedula ?>">
                                                 <input type="submit" class="btn btn-info btn-raised btn-sm" name="registrar" value="Registrar">
                                             </div>
 									    </form>

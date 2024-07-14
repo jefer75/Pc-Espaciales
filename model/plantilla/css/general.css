@@ -21,7 +21,11 @@
     color: black;
 }
 table img{
-    width: 15%;
+    width: 50%;
+}
+.img_ver_producto{
+    width: 30vh;
+    margin-left: 30%;
 }
 .plantBoton{
     width: 5vh;

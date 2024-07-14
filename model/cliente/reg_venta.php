@@ -38,19 +38,6 @@
 								<div class="row">
 									<div class="col-xs-12 col-md-10 col-md-offset-1">
                                     <form method="POST">
-                                        
-                                            <div class="form-group label-floating">
-                                                <select class="form-control" name="cliente" id="clienteSelect">
-                                                    <option value="">Seleccione el cliente</option>
-                                                    <?php
-                                                    $control = $con->prepare("SELECT * FROM usuarios WHERE id_tipo_usuario=2");
-                                                    $control->execute();
-                                                    while ($fila = $control->fetch(PDO::FETCH_ASSOC)) {
-                                                        echo "<option value='" . $fila['documento'] . "'>" .$fila['documento']." - ".$fila['nombre']." ".$fila['apellido']. "</option>";
-                                                    }
-                                                    ?>
-                                                </select>
-											</div>
 											
 											<div class="form-group label-floating">	
 												<input type="submit" class="form-control" id="añadir" name="añadir" value="Añadir producto" onclick="opendialog();">
@@ -90,10 +77,10 @@
 														
 													</td>
 												</tr>
-												<?php
-													
-												}
-													
+												<input type="hidden" name="cantidad_eliminada" value="<?php echo $fila['cantidad']?>">
+												<input type="hidden" name="valor_total" value="<?php echo $valor_total ?>">
+												<?php	
+													}													
 												?>
 												<tr>
 													<td></td>
@@ -104,8 +91,7 @@
 												</tbody>
 											</table>
 											<div class="text-center">
-												<input type="hidden" name="cantidad_eliminada" value="<?php echo $fila['cantidad']?>">
-												<input type="hidden" name="valor_total" value="<?php echo $valor_total ?>">
+												<input type="hidden" name="cliente" value="<?php echo $cedula ?>">
 												<input type="submit" class="cancelar" name="cancelar" value="Cancelar compra">
 												<input type="submit" class="registrar" name="registrar" value="Registrar">
 											</div>

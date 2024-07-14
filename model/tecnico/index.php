@@ -33,9 +33,9 @@
 				</thead>
 				<tbody>
 				<?php
-				$con_productos = $con->prepare("SELECT solicitudes.*, estados.estado, tipo_solicitud.tipo_solicitud, usuarios.nombre                  
+				$con_productos = $con->prepare("SELECT solicitudes.*, estados.estado, tipo_solicitud.tipo_solicitud, usuarios.nombre, usuarios.apellido
 												FROM solicitudes
-												INNER JOIN usuarios ON usuarios.documento = solicitudes.tecnico
+												INNER JOIN usuarios ON usuarios.documento = solicitudes.cliente
 												INNER JOIN tipo_solicitud ON tipo_solicitud.id_tipo_soli = solicitudes.id_tipo_soli
 												INNER JOIN estados ON estados.id_estado = solicitudes.id_estado
 												Where solicitudes.id_estado=5 AND solicitudes.tecnico=$cedula");
@@ -49,7 +49,7 @@
 						<td><?php echo $fila['fecha_soli'] ?></td>
 						<td><?php echo $fila['tipo_solicitud'] ?></td>
 						<td><?php echo $fila['descripcion'] ?></td>
-						<td><?php echo $fila['nombre'] ?></td>
+						<td><?php echo $fila['nombre']." ".$fila['apellido'] ?></td>
 						<td><?php echo $fila['estado'] ?></td>
 						<td>
 							<form method="POST">
