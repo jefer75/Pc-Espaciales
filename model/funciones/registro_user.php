@@ -5,6 +5,9 @@ $con = $db -> conectar();
 
 function manejarPage($page) {
     switch ($page) {
+        case 0:
+            echo '<script>window.location="model/inicio/login.php"</script>';
+            break;
         case 1:
             echo '<script>window.location="login.php"</script>';
             break;
@@ -46,7 +49,10 @@ if (isset($_POST['registrar']))
     $tipo_user=$_POST['tipo_usuario'];
     $page = $_POST['pagina'];
 
-    if ($page == 1){
+    if($page == 0){
+        $contrasena= $_POST['contrasena'];
+    }
+    else if ($page == 1){
         $contrasena= $_POST['contrasena'];
     }else if ($page == 2){
         $digitos = "sakur02ue859y2u389rhdewirh102385y1285013289";

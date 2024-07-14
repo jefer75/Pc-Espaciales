@@ -97,7 +97,7 @@
 											<td><?php echo $fila['id_producto'] ?></td>
 											<td><?php echo $fila['nombre_p'] ?></td>
 											<td><?php echo $fila['cantidad'] ?></td>
-                                            <td><?php echo $fila['valor'] ?></td>
+                                            <td><?php echo number_format($fila['valor']) ?></td>
                                             <td><img src="../../<?php echo $fila['imagen'] ?>" alt=""></td>
 											<td><?php echo $fila['estado'] ?></td>
 											<td><a href="#" class="boton" onclick="window.open
