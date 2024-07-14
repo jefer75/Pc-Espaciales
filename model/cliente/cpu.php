@@ -14,9 +14,9 @@
 		<!-- Content page -->
 		<div class="container-fluid">
 			<div class="page-header">
-			  <h1 class="text-titles"><i class="zmdi zmdi-font zmdi-hc-fw"></i> Inventario <small>Laptops</small></h1>
+			  <h1 class="text-titles"><i class="zmdi zmdi-font zmdi-hc-fw"></i> Inventario <small>CPU</small></h1>
 			</div>
-			<p class="lead">En esta pantalla puedes visualizar las diferentes referencias de Laptops que tíenes en tu inventario.</p>
+			<p class="lead">En esta pantalla puedes visualizar las diferentes referencias de CPU que tíenes en tu inventario.</p>
 		</div>
 		<div class="container-fluid">
 			<div class="row">
@@ -25,9 +25,8 @@
 					  	<li><a href="#list" data-toggle="tab">Lista</a></li>
 					</ul>
 					<div id="myTabContent" class="tab-content">
-						
-					  	<div class="tab-pane fade active in" id="list">
-							<div class="table-responsive">
+						<div class="tab-pane fade active in" id="new">
+														<div class="table-responsive">
 								<table class="table table-hover text-center">
 									<thead>
 										<tr>
@@ -37,17 +36,18 @@
 											<th class="text-center">Precio</th>
 											<th class="text-center">Imagen</th>
 											<th class="text-center">Estado</th>
-											<th class="text-center">Accion</th>
+											<th class="text-center">Actualizar</th>
 										</tr>
 									</thead>
 									<tbody>
                                     <?php
                                     $con_productos = $con->prepare("SELECT productos.*, estados.estado FROM productos
                                                                     INNER JOIN estados ON estados.id_estado = productos.id_estado
-                                                                    Where productos.id_tipo_pro=1 AND productos.id_estado=1");
+                                                                    Where productos.id_tipo_pro=3 AND productos.id_estado=1");
                                     $con_productos->execute();
                                     $productos = $con_productos->fetchAll(PDO::FETCH_ASSOC);
                                     foreach ($productos as $fila) {
+                                        
                                     ?>
                                     <tr>
 											<td><?php echo $fila['id_producto'] ?></td>
@@ -59,7 +59,7 @@
 											<td><a href="#" class="boton" onclick="window.open
 											('../funciones/actualizar_producto.php?id=<?php echo $fila['id_producto'] ?>','','width= 700,height=500, toolbar=NO');void(null);">Actualizar</a>
 											</td>
-								    	</tr>
+										</tr>
                                     <?php
                                     }
                                     ?>
@@ -82,5 +82,5 @@
 		</div>
 	</section>
 <?php
-include '../vendedor/footer.php';
+include 'footer.php';
 ?>

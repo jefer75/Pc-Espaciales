@@ -43,37 +43,6 @@ $con = $db->conectar();
     ?>
     <!-- end header section -->
   </div>
-    <?php
-      if(isset($_POST['filtrar'])){
-        $selector=$_POST['filtro'];
-
-        function Filtrar($con, $selector){ 
-          if($selector==""){
-            $con_productos = $con->prepare("SELECT * FROM productos Where id_tipo_pro!=1 AND id_estado=1");
-            $con_productos->execute();
-            $productos = $con_productos->fetchAll(PDO::FETCH_ASSOC);
-          }
-          else{
-            $con_productos = $con->prepare("SELECT * FROM productos Where id_tipo_pro=$selector AND id_estado=1");
-            $con_productos->execute();
-            $productos = $con_productos->fetchAll(PDO::FETCH_ASSOC);
-          }
-        }
-      }
-    ?>
-
-  <form method="POST">
-    <label for="filtro">¿Que estas buscando?</label>
-      <select id="filtro" name="filtro" >
-        <option value="2">Pantalla</option>
-        <option value="3">CPU</option>
-        <option value="4">Teclado</option>
-        <option value="5">Mouse</option>
-        <option value="6">PadMouse</option>
-      </select>
-      <button name="filtrar">Aplciar</button>
-  </form>
-  <!-- fruits section -->
 
   <section class="fruit_section layout_padding-top">
     <div class="container">
@@ -82,7 +51,10 @@ $con = $db->conectar();
         Estos son algunos de nuestros productos más vendidos.
       </p>
       <?php
-        $Filtrar($con, $selector);
+        $con_productos = $con->prepare("SELECT * FROM productos Where id_tipo_pro!=1 AND id_estado=1");
+        $con_productos->execute();
+        $productos = $con_productos->fetchAll(PDO::FETCH_ASSOC);
+        
         foreach ($productos as $fila) {
       ?>
       <div class="row layout_padding2">

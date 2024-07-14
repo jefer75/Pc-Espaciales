@@ -16,6 +16,7 @@ $con_nombre->execute();
 $nombres = $con_nombre->fetchAll(PDO::FETCH_ASSOC);
 foreach ($nombres as $fila) {
     $nombre = $fila['nombre'];
+	$cedula = $fila['documento'];
 }
 
 if(isset($_POST['sesion']))
@@ -23,8 +24,12 @@ if(isset($_POST['sesion']))
     session_destroy();
 
     header('location:../../index.php');
+}else if(isset($_POST['perfil']))
+{
+    header('location:perfil.php');
 }
 ?>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <!-- SideBar -->
 	<section class="full-box cover dashboard-sideBar">
 		<div class="full-box dashboard-sideBar-bg btn-menu-dashboard"></div>
@@ -36,19 +41,20 @@ if(isset($_POST['sesion']))
 			<!-- SideBar User info -->
 			<div class="full-box dashboard-sideBar-UserInfo">
 				<figure class="full-box">
-					<img src="../plantilla/assets/img/avatar.jpg" alt="UserIcon">
+					<img src="../plantilla/assets/img/avatar.png" alt="UserIcon">
 					<figcaption class="text-center text-titles"><?php echo $nombre?></figcaption>
 				</figure>
 				<ul class="full-box list-unstyled text-center">
 					<li>
-						<a href="#!">
-							<i class="zmdi zmdi-settings"></i>
-						</a>
+						<form method="Post">
+							<button type="submit" name="perfil" class="plantBoton">
+								<i class="zmdi zmdi-settings"></i>
+							</button>
+						</form>
 					</li>
 					<li>
-						<a href="#!" class="btn-exit-system">
 						<form method="POST">
-							<button class="cerrar_sesion" name="sesion">
+							<button name="sesion" class="plantBoton">
 								<i class="zmdi zmdi-power"></i>
 							</button>
 						</form>	
@@ -65,60 +71,57 @@ if(isset($_POST['sesion']))
 				</li>
 				<li>
 					<a href="#!" class="btn-sideBar-SubMenu">
-						<i class="zmdi zmdi-case zmdi-hc-fw"></i> Inventario <i class="zmdi zmdi-caret-down pull-right"></i>
+						<i class="zmdi zmdi-case zmdi-hc-fw"></i> Productos <i class="zmdi zmdi-caret-down pull-right"></i>
 					</a>
 					<ul class="list-unstyled full-box">
 						<li>
-							<a href="laptop.php"><i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Laptop</a>
+							<a href="laptop.php"> Laptop</a>
 						</li>
 						<li>
-							<a href="pantalla.php"><i class="zmdi zmdi-timer zmdi-hc-fw"></i> Pantallas</a>
+							<a href="pantalla.php"> Pantallas</a>
 						</li>
 						<li>
-							<a href="cpu.php"><i class="zmdi zmdi-book zmdi-hc-fw"></i> CPU</a>
+							<a href="cpu.php"> CPU</a>
 						</li>
 						<li>
-							<a href="teclado.php"><i class="zmdi zmdi-font zmdi-hc-fw"></i> Teclado</a>
+							<a href="teclado.php"> Teclado</a>
 						</li>
 						<li>
-							<a href="mouse.php"><i class="zmdi zmdi-graduation-cap zmdi-hc-fw"></i> Mouse</a>
+							<a href="mouse.php"> Mouse</a>
 						</li>
 						<li>
-							<a href="padmouse.php"><i class="zmdi zmdi-font zmdi-hc-fw"></i> PadMouse</a>
+							<a href="padmouse.php"> PadMouse</a>
 						</li>
 					</ul>
 				</li>
 				<li>
 					<a href="#!" class="btn-sideBar-SubMenu">
-						<i class="zmdi zmdi-card zmdi-hc-fw"></i> Gestion <i class="zmdi zmdi-caret-down pull-right"></i>
+						<i class="zmdi zmdi-card zmdi-hc-fw"></i> Compras <i class="zmdi zmdi-caret-down pull-right"></i>
 					</a>
 					<ul class="list-unstyled full-box">
 						<li>
-							<a href="ventas.php"><i class="zmdi zmdi-money-box zmdi-hc-fw"></i> Ventas</a>
+							<a href="ventas.php">Realziadas</a>
 						</li>
 						<li>
-							<a href="reg_venta.php"><i class="zmdi zmdi-money-box zmdi-hc-fw"></i> Registrar venta</a>
-						</li>
-						<li>
-							<a href="reparaciones.php"><i class="zmdi zmdi-money zmdi-hc-fw"></i> Reparaciones</a>
-						</li>
-						<li>
-							<a href="reg_reparar.php"><i class="zmdi zmdi-money zmdi-hc-fw"></i> Registrar Reparacion</a>
+							<a href="reg_venta.php">Registrar venta</a>
 						</li>
 					</ul>
 				</li>
 				<li>
 					<a href="#!" class="btn-sideBar-SubMenu">
-						<i class="zmdi zmdi-account-add zmdi-hc-fw"></i> Usuarios<i class="zmdi zmdi-caret-down pull-right"></i>
+						<i class="zmdi zmdi-card zmdi-hc-fw"></i> Reparaciones <i class="zmdi zmdi-caret-down pull-right"></i>
 					</a>
 					<ul class="list-unstyled full-box">
 						<li>
-							<a href="tecnico.php"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Tecnicos</a>
+							<a href="reparaciones.php">Realizadas</a>
 						</li>
 						<li>
-							<a href="clientes.php"><i class="zmdi zmdi-male-alt zmdi-hc-fw"></i> Clientes</a>
+							<a href="reg_reparar.php">Registrar Reparacion</a>
 						</li>
 					</ul>
+				</li>
+				<li>
+					<a href="perfil.php"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Perfil</a>
 				</li>
 			</ul>
 		</div>
@@ -129,17 +132,6 @@ if(isset($_POST['sesion']))
 			<ul class="full-box list-unstyled text-right">
 				<li class="pull-left">
 					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
-				</li>
-				<li>
-					<a href="#!" class="btn-Notifications-area">
-						<i class="zmdi zmdi-notifications-none"></i>
-						<span class="badge">7</span>
-					</a>
-				</li>
-				<li>
-					<a href="#!" class="btn-search">
-						<i class="zmdi zmdi-search"></i>
-					</a>
 				</li>
 				<li>
 					<a href="#!" class="btn-modal-help">

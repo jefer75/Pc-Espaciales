@@ -29,6 +29,7 @@ if (!isset($correo)){
    if (isset($_POST['actualizar'])){
 
     $nombre_p = $_POST['nombre'];
+    $descripcion = $_POST['descripcion'];
     $cantidad = $_POST['cantidad'];
     $precio = $_POST['precio'];
     $estado = $_POST['estado'];
@@ -55,7 +56,7 @@ if (!isset($correo)){
         $direccion=$carpeta.$id_producto.".".$formato;
         $ruta="../../".$carpeta.$id_producto.".".$formato;
 
-        $insert= $con -> prepare ("UPDATE productos SET nombre_p='$nombre_p', cantidad='$cantidad', valor=$precio, id_estado='$estado', imagen='$direccion' WHERE id_producto = $id_producto");
+        $insert= $con -> prepare ("UPDATE productos SET nombre_p='$nombre_p', descripcion='$descripcion', cantidad='$cantidad', valor=$precio, id_estado='$estado', imagen='$direccion' WHERE id_producto = $id_producto");
         $insert -> execute();
         
         if (move_uploaded_file($imagen,$ruta)) {
@@ -70,7 +71,7 @@ if (!isset($correo)){
        }
 
     } else {
-      $insert= $con -> prepare ("UPDATE productos SET nombre_p='$nombre_p', cantidad=$cantidad, valor=$precio, id_estado=$estado WHERE id_producto='".$_GET['id']."'");
+      $insert= $con -> prepare ("UPDATE productos SET nombre_p='$nombre_p', descripcion='$descripcion', cantidad=$cantidad, valor=$precio, id_estado=$estado WHERE id_producto='".$_GET['id']."'");
         $insert -> execute();
         echo '<script> alert ("Registro actualizado exitosamente");</script>';
         echo '<script> window.close(); </script>';
@@ -87,7 +88,7 @@ if (!isset($correo)){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actualizar Actividad</title>
+    <title>Actualizar producto</title>
     <link rel="stylesheet" href="../plantilla/css/main.css">
     <link rel="stylesheet" href="../plantilla/css/general.css">
     <script>
@@ -113,6 +114,11 @@ if (!isset($correo)){
             </div>
 
             <div class="form-group label-floating">
+                <label for="descripcionInput" class="form-label">Descripcion</label>
+                <textarea class="form-control" name="descripcion" id=""><?php echo$fila['descripcion']?></textarea>
+            </div>
+
+            <div class="form-group label-floating">
                 <label for="descripcionInput" class="form-label">Cantidad</label>
                 <input class="form-control" type="text" name="cantidad" id="descripcionInput" value="<?php echo $fila['cantidad'] ?>" placeholder="Descripción del paquete">
                 <div id="error_descripcion" class="invalid-feedback" style="display: none;">
@@ -122,7 +128,7 @@ if (!isset($correo)){
 
             <div class="form-group label-floating">
                 <label for="descripcionInput" class="form-label">Precio</label>
-                <input class="form-control" type="text" name="precio" id="descripcionInput" value="<?php echo$fila['valor']?>" placeholder="Descripción del paquete">
+                <input class="form-control" type="number" name="precio" id="descripcionInput" value="<?php echo$fila['valor']?>" placeholder="Descripción del paquete">
                 <div id="error_descripcion" class="invalid-feedback" style="display: none;">
                     La descripción debe tener entre 10 y 80 caracteres y no puede contener más de un espacio consecutivo.
                 </div>

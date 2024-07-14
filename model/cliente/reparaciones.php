@@ -81,7 +81,7 @@
                                                                 INNER JOIN usuarios ON usuarios.documento = solicitudes.tecnico
                                                                 INNER JOIN tipo_solicitud ON tipo_solicitud.id_tipo_soli = solicitudes.id_tipo_soli
                                                                 INNER JOIN estados ON estados.id_estado = solicitudes.id_estado
-                                                                Where solicitudes.id_estado=6 order by solicitudes.id_solicitud");
+                                                                Where solicitudes.id_estado=6 AND solicitudes.cliente=$cedula order by solicitudes.id_solicitud");
                                 $con_productos->execute();
                                 $productos = $con_productos->fetchAll(PDO::FETCH_ASSOC);
                                 foreach ($productos as $fila) {
@@ -121,8 +121,8 @@
                                 $con_productos = $con->prepare("SELECT solicitudes.*, estados.estado, tipo_solicitud.tipo_solicitud, usuarios.nombre FROM solicitudes
                                                                 INNER JOIN estados ON estados.id_estado = solicitudes.id_estado
                                                                 INNER JOIN tipo_solicitud ON tipo_solicitud.id_tipo_soli = solicitudes.id_tipo_soli
-                                                                INNER JOIN usuarios ON usuarios.documento = solicitudes.cliente
-                                                                Where solicitudes.id_estado!=6 ORDER BY solicitudes.id_estado");
+                                                                INNER JOIN usuarios ON usuarios.documento = solicitudes.tecnico
+                                                                Where solicitudes.id_estado!=6 AND solicitudes.cliente = $cedula ORDER BY solicitudes.id_estado");
                                 $con_productos->execute();
                                 $productos = $con_productos->fetchAll(PDO::FETCH_ASSOC);
                                 foreach ($productos as $fila) {
@@ -171,53 +171,6 @@
             </div>
         </div>
     </section>
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <form method="POST" id="modalForm" action="../funciones/asignar_tecnico.php">
-                <select class="form-control" name="tecnico" id="tecnicoSelect_<?php echo $fila['id_solicitud'] ?>" required>
-                    <option value="">Seleccione el Tecnico</option>
-                    <?php
-                        $queryTecnicos = $con->prepare("SELECT * FROM usuarios WHERE id_tipo_usuario=3");
-                        $queryTecnicos->execute();
-                        while ($filaTecnico = $queryTecnicos->fetch(PDO::FETCH_ASSOC)) {
-                        echo "<option value='" . $filaTecnico['documento'] . "'>" . $filaTecnico['nombre'] . "</option>";
-                    }
-                    ?>
-                </select>
-                <input type="hidden" name="soli_select" id="soli_select" value="">
-                <p>¿Está seguro de que desea asignar esta solicitud?</p>
-                <button type="submit" class="btn btn-success">Asignar</button>
-            </form>
-        </div>
-    </div>
-
-    <script>
-        // JavaScript for handling modal
-        document.addEventListener('DOMContentLoaded', (event) => {
-            var modal = document.getElementById("myModal");
-            var span = document.getElementsByClassName("close")[0];
-            var soliSelectInput = document.getElementById("soli_select");
-
-            document.querySelectorAll('.abrirModal').forEach(button => {
-                button.addEventListener('click', function() {
-                    var soliId = this.getAttribute('data-id');
-                    soliSelectInput.value = soliId;
-                    modal.style.display = "block";
-                });
-            });
-
-            span.addEventListener('click', function() {
-                modal.style.display = "none";
-            });
-
-            window.addEventListener('click', function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            });
-        });
-    </script>
 <?php
 include 'footer.php';
 ?>

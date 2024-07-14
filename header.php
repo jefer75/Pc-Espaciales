@@ -1,7 +1,7 @@
 <header class="header_section">
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="index.php">
             <img src="img/logo.png" alt="" /><span>
               PC Espaciales
             </span>

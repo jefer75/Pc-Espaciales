@@ -14,19 +14,19 @@
 		<!-- Content page -->
 		<div class="container-fluid">
 			<div class="page-header">
-			  <h1 class="text-titles"><i class="zmdi zmdi-font zmdi-hc-fw"></i> Inventario <small>Laptops</small></h1>
+			  <h1 class="text-titles"><i class="zmdi zmdi-font zmdi-hc-fw"></i> Inventario <small>Teclados</small></h1>
 			</div>
-			<p class="lead">En esta pantalla puedes visualizar las diferentes referencias de Laptops que tíenes en tu inventario.</p>
+			<p class="lead">En esta pantalla puedes visualizar las diferentes referencias de teclados que tíenes en tu inventario.</p>
 		</div>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-12">
 					<ul class="nav nav-tabs" style="margin-bottom: 15px;">
+					  	<li class="active"><a href="#new" data-toggle="tab">Nueva</a></li>
 					  	<li><a href="#list" data-toggle="tab">Lista</a></li>
 					</ul>
 					<div id="myTabContent" class="tab-content">
-						
-					  	<div class="tab-pane fade active in" id="list">
+						<div class="tab-pane fade active in" id="new">							
 							<div class="table-responsive">
 								<table class="table table-hover text-center">
 									<thead>
@@ -37,17 +37,18 @@
 											<th class="text-center">Precio</th>
 											<th class="text-center">Imagen</th>
 											<th class="text-center">Estado</th>
-											<th class="text-center">Accion</th>
+											<th class="text-center">Actualizar</th>
 										</tr>
 									</thead>
 									<tbody>
                                     <?php
                                     $con_productos = $con->prepare("SELECT productos.*, estados.estado FROM productos
                                                                     INNER JOIN estados ON estados.id_estado = productos.id_estado
-                                                                    Where productos.id_tipo_pro=1 AND productos.id_estado=1");
+                                                                    Where productos.id_tipo_pro=4 ANd productos.id_estado=1");
                                     $con_productos->execute();
                                     $productos = $con_productos->fetchAll(PDO::FETCH_ASSOC);
                                     foreach ($productos as $fila) {
+                                        
                                     ?>
                                     <tr>
 											<td><?php echo $fila['id_producto'] ?></td>
@@ -82,5 +83,5 @@
 		</div>
 	</section>
 <?php
-include '../vendedor/footer.php';
+include 'footer.php';
 ?>

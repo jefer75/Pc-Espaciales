@@ -91,7 +91,6 @@
                                     $con_productos->execute();
                                     $productos = $con_productos->fetchAll(PDO::FETCH_ASSOC);
                                     foreach ($productos as $fila) {
-                                        
                                     ?>
                                     <tr>
 											<td><?php echo $fila['id_producto'] ?></td>

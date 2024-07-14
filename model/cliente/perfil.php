@@ -10,7 +10,8 @@
 <body>
 <?php
     include 'header.php';
-   
+    $correo = $_SESSION['correo'];
+    include'../funciones/update_user.php';
 ?>
     <!-- Content page -->
     <div class="perfil_info">
@@ -35,7 +36,7 @@
         </div>
     </div>
     <div class="actualizar">
-        <form action="../funciones/update_user.php" method="$_POST">
+        <form method="POST">
             <label class="label_actualizar" for="correo">Correo electrónico</label>
             <input type="email" class="information" id="correo" name="correo" value="<?php echo $fila['correo'];?>">
             
@@ -50,7 +51,7 @@
             <label class="label_actualizar" for="contraseña">Confirme la contraseña</label>
             <input type="password" class="information" id="contraseña" name="new_contrasena" placeholder="Digite la nueva contraseña">
 
-            <input type="hidden" name="page" value="2">
+            <input type="hidden" name="page" value="1">
             <br>
             <input type="submit" name="actualizar" class="enviar" value="Actualizar">
         </form>

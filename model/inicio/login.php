@@ -8,6 +8,8 @@
 </head>
 <body class="cover" style="background-image: url(../../img/fondos/login.jpeg);">
     
+<a class="btn btn-raised btn-danger" href="../../index.php">Regresar</a>
+
 	<form method="POST" action="../../controller/inicio.php" autocomplete="off" class="full-box logInForm">
 		<p class="text-center text-muted"><i class="zmdi zmdi-account-circle zmdi-hc-5x"></i></p>
 		<p class="text-center text-muted text-uppercase">Inicia sesión con tu cuenta</p>
